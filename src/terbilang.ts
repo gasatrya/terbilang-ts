@@ -15,6 +15,10 @@ export function terbilang(num: number): string {
   ]
   const units: string[] = ['', 'Puluh', 'Ratus', 'Ribu', 'Juta', 'Milyar', 'Triliun', 'Kuadriliun']
 
+  if (num < 0 || isNaN(num) || !isFinite(num)) {
+    return ''
+  }
+
   if (num < 12) {
     return bilangan[num]
   }
@@ -31,13 +35,14 @@ export function terbilang(num: number): string {
   if (num < 1000) {
     const [depan, belakang] = [Math.floor(num / 100), num % 100]
     if (num >= 100 && num < 200) {
-      return `Seratus ${terbilang(num - 100)}`
+      return `Seratus${belakang ? ` ${terbilang(belakang)}` : ''}`
     }
     return `${bilangan[depan]} ${units[2]}${belakang ? ` ${terbilang(belakang)}` : ''}`
   }
 
   if (num >= 1000 && num < 2000) {
-    return `Seribu ${terbilang(num - 1000)}`
+    const belakang = num - 1000
+    return `Seribu${belakang ? ` ${terbilang(belakang)}` : ''}`
   }
 
   for (let i = 3; i < units.length; i++) {
