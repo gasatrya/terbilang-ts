@@ -4,7 +4,7 @@ import { terbilang } from './terbilang'
 describe('terbilang', () => {
   // Test basic numbers (0-11)
   it('should handle basic numbers correctly', () => {
-    expect(terbilang(0)).toBe('')
+    expect(terbilang(0)).toBe('Nol')
     expect(terbilang(1)).toBe('Satu')
     expect(terbilang(5)).toBe('Lima')
     expect(terbilang(10)).toBe('Sepuluh')
@@ -61,8 +61,22 @@ describe('terbilang', () => {
 
   // Test edge cases
   it('should handle edge cases correctly', () => {
-    expect(terbilang(-1)).toBe('')
+    expect(terbilang(-1)).toBe('Negatif Satu')
+    expect(terbilang(-100)).toBe('Negatif Seratus')
     expect(terbilang(NaN)).toBe('')
     expect(terbilang(Infinity)).toBe('')
+  })
+
+  // Test non-integer inputs
+  it('should throw error for non-integer inputs', () => {
+    expect(() => terbilang(3.5)).toThrow('terbilang only accepts integer numbers')
+    expect(() => terbilang(123.45)).toThrow('terbilang only accepts integer numbers')
+    expect(() => terbilang(-3.5)).toThrow('terbilang only accepts integer numbers')
+  })
+
+  // Test numbers beyond Kuadriliun
+  it('should throw error for numbers beyond Kuadriliun', () => {
+    expect(() => terbilang(10 ** 18)).toThrow('terbilang only supports numbers up to 999 Kuadriliun')
+    expect(() => terbilang(10 ** 20)).toThrow('terbilang only supports numbers up to 999 Kuadriliun')
   })
 })

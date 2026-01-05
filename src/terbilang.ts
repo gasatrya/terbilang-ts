@@ -15,8 +15,24 @@ export function terbilang(num: number): string {
   ]
   const units: string[] = ['', 'Puluh', 'Ratus', 'Ribu', 'Juta', 'Milyar', 'Triliun', 'Kuadriliun']
 
-  if (num < 0 || isNaN(num) || !isFinite(num)) {
+  if (num === 0) {
+    return 'Nol'
+  }
+
+  if (num < 0) {
+    return `Negatif ${terbilang(Math.abs(num))}`
+  }
+
+  if (isNaN(num) || !isFinite(num)) {
     return ''
+  }
+
+  if (!Number.isInteger(num)) {
+    throw new Error('terbilang only accepts integer numbers')
+  }
+
+  if (num >= 10 ** 18) {
+    throw new Error('terbilang only supports numbers up to 999 Kuadriliun (less than 10^18)')
   }
 
   if (num < 12) {
@@ -45,12 +61,21 @@ export function terbilang(num: number): string {
     return `Seribu${belakang ? ` ${terbilang(belakang)}` : ''}`
   }
 
-  for (let i = 3; i < units.length; i++) {
-    const unitValue = 10 ** (3 * (i - 1))
-    if (num < unitValue) {
-      const [depan, belakang] = [Math.floor(num / (unitValue / 1000)), num % (unitValue / 1000)]
-      const unitName = units[i]
-      return `${terbilang(depan)} ${unitName}${belakang ? ` ${terbilang(belakang)}` : ''}`
+  const scales = [
+    { name: 'Ribu', min: 1000 },
+    { name: 'Juta', min: 1000000 },
+    { name: 'Milyar', min: 1000000000 },
+    { name: 'Triliun', min: 1000000000000 },
+    { name: 'Kuadriliun', min: 1000000000000000 }
+  ]
+
+  for (const scale of scales) {
+    if (num >= scale.min) {
+      const nextMin = scale.min * 1000
+      if (num < nextMin || scale.name === 'Kuadriliun') {
+        const [depan, belakang] = [Math.floor(num / scale.min), num % scale.min]
+        return `${terbilang(depan)} ${scale.name}${belakang ? ` ${terbilang(belakang)}` : ''}`
+      }
     }
   }
 
