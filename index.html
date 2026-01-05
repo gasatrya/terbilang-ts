@@ -10,108 +10,112 @@
     <div class="container">
       <header>
         <h1>🇮🇩 Terbilang TS</h1>
-        <p class="subtitle">Convert numbers to Indonesian words</p>
+        <p class="subtitle">TypeScript helper for converting numbers to Indonesian words</p>
       </header>
 
       <main>
-        <section class="converter">
-          <div class="input-group">
-            <label for="numberInput">Enter a number:</label>
-            <input
-              type="number"
-              id="numberInput"
-              placeholder="e.g., 12345"
-              step="1"
-            />
-            <button id="convertBtn">Convert</button>
-          </div>
-
-          <div id="result" class="result"></div>
-          <div id="error" class="error"></div>
+        <section class="section">
+          <h2>What is it?</h2>
+          <p>
+            A TypeScript library that converts integers to Indonesian words. 
+            It transforms numbers like <code>12345</code> into 
+            <code>"Dua Belas Ribu Tiga Ratus Empat Puluh Lima"</code>.
+          </p>
+          <p>
+            Inspired by <a href="https://github.com/BosNaufal/terbilang-js" target="_blank">terbilang-js</a> 
+            by Naufal Rabbani, rebuilt with TypeScript for better type safety and modern JavaScript features.
+          </p>
         </section>
 
-        <section class="examples">
-          <h2>Try These Examples</h2>
-          <div class="example-buttons">
-            <button data-value="0">0</button>
-            <button data-value="15">15</button>
-            <button data-value="100">100</button>
-            <button data-value="1000">1000</button>
-            <button data-value="1234567">1234567</button>
-            <button data-value="-50">-50</button>
-          </div>
-        </section>
-
-        <section class="info">
-          <h2>Features</h2>
+        <section class="section">
+          <h2>Why use it?</h2>
           <ul>
-            <li>✅ Converts integers to Indonesian words</li>
-            <li>✅ Supports negative numbers</li>
-            <li>✅ Zero returns "Nol"</li>
-            <li>✅ Range: 0 to 999 Kuadriliun (10^18 - 1)</li>
-            <li>✅ Input validation with clear error messages</li>
+            <li><strong>Type-safe:</strong> Written in TypeScript with full type definitions</li>
+            <li><strong>Validated:</strong> Input validation with clear error messages</li>
+            <li><strong>Comprehensive:</strong> Supports numbers from 0 to 999 Kuadriliun (10^18 - 1)</li>
+            <li><strong>Edge case handling:</strong> Properly handles zero, negative numbers, NaN, and Infinity</li>
+            <li><strong>Simple API:</strong> Single function with intuitive usage</li>
           </ul>
         </section>
 
-        <section class="code">
-          <h2>Usage</h2>
-          <pre><code>import { terbilang } from 'terbilang-ts'
+        <section class="section">
+          <h2>How to use</h2>
+          <div class="code-block">
+            <pre><code>import { terbilang } from 'terbilang-ts'
 
-terbilang(12345)
-// "Dua Belas Ribu Tiga Ratus Empat Puluh Lima"</code></pre>
+// Basic numbers
+terbilang(1)          // "Satu"
+terbilang(10)         // "Sepuluh"
+terbilang(100)        // "Seratus"
+terbilang(1000)       // "Seribu"
+
+// Larger numbers
+terbilang(12345)      // "Dua Belas Ribu Tiga Ratus Empat Puluh Lima"
+terbilang(1234567)    // "Satu Juta Dua Ratus Tiga Puluh Empat Ribu Lima Ratus Enam Puluh Tujuh"
+
+// Zero and negatives
+terbilang(0)          // "Nol"
+terbilang(-5)         // "Negatif Lima"</code></pre>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Error handling</h2>
+          <div class="code-block">
+            <pre><code>// Non-integer numbers
+try {
+  terbilang(123.45)
+} catch (e) {
+  console.error(e.message)  // "terbilang only accepts integer numbers"
+}
+
+// Numbers beyond supported range
+try {
+  terbilang(10 ** 18)
+} catch (e) {
+  console.error(e.message)  // "terbilang only supports numbers up to 999 Kuadriliun"
+}
+
+// Edge cases
+terbilang(NaN)       // ""
+terbilang(Infinity)  // ""</code></pre>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Installation</h2>
+          <div class="code-block">
+            <pre><code>npm install terbilang-ts</code></pre>
+          </div>
+          <p>Or copy the <a href="https://github.com/gasatrya/terbilang-ts/blob/main/src/terbilang.ts" target="_blank">terbilang.ts</a> file directly to your project.</p>
+        </section>
+
+        <section class="section">
+          <h2>Features</h2>
+          <ul>
+            <li>✅ Converts integers to Indonesian words (Nol to Kuadriliun)</li>
+            <li>✅ Supports negative numbers with "Negatif" prefix</li>
+            <li>✅ Zero returns "Nol" instead of empty string</li>
+            <li>✅ Input validation for non-integer values</li>
+            <li>✅ Range validation (up to 999 Kuadriliun / 10^18 - 1)</li>
+            <li>✅ Handles edge cases (NaN, Infinity)</li>
+            <li>✅ Type-safe TypeScript implementation</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>Supported Range</h2>
+          <p>The function supports integers from <strong>-999,999,999,999,999,999</strong> to <strong>999,999,999,999,999,999</strong> (999 Kuadriliun).</p>
+          <p>Numbers outside this range will throw an error.</p>
         </section>
 
         <footer>
           <p>
-            <a href="https://github.com/gasatrya/terbilang-ts" target="_blank">
-              View on GitHub
-            </a>
+            <a href="https://github.com/gasatrya/terbilang-ts" target="_blank">View on GitHub</a> · 
+            <a href="https://www.npmjs.com/package/terbilang-ts" target="_blank">npm Package</a>
           </p>
         </footer>
       </main>
     </div>
-
-    <script type="module">
-      import { terbilang } from './src/terbilang.ts'
-
-      const numberInput = document.getElementById('numberInput')
-      const convertBtn = document.getElementById('convertBtn')
-      const result = document.getElementById('result')
-      const error = document.getElementById('error')
-      const exampleButtons = document.querySelectorAll('.example-buttons button')
-
-      function convert() {
-        const value = numberInput.value.trim()
-        
-        result.textContent = ''
-        error.textContent = ''
-        
-        if (value === '') {
-          error.textContent = 'Please enter a number'
-          return
-        }
-
-        const num = Number(value)
-
-        try {
-          const resultText = terbilang(num)
-          result.textContent = resultText || '(empty result)'
-        } catch (e) {
-          error.textContent = e.message
-        }
-      }
-
-      convertBtn.addEventListener('click', convert)
-      numberInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') convert()
-      })
-
-      exampleButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          numberInput.value = btn.dataset.value
-          convert()
-        })
-      })
-    </script>
   </body>
 </html>
