@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Terbilang TS - Number to Indonesian Words</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
     <div class="container">
       <header>
-        <h1>🇮🇩 Terbilang TS</h1>
+        <h1>Terbilang TS</h1>
         <p class="subtitle">TypeScript helper for converting numbers to Indonesian words</p>
       </header>
 
@@ -41,7 +45,7 @@
         <section class="section">
           <h2>How to use</h2>
           <div class="code-block">
-            <pre><code>import { terbilang } from 'terbilang-ts'
+            <pre><code class="language-typescript">import { terbilang } from 'terbilang-ts'
 
 // Basic numbers
 terbilang(1)          // "Satu"
@@ -62,7 +66,7 @@ terbilang(-5)         // "Negatif Lima"</code></pre>
         <section class="section">
           <h2>Error handling</h2>
           <div class="code-block">
-            <pre><code>// Non-integer numbers
+            <pre><code class="language-typescript">// Non-integer numbers
 try {
   terbilang(123.45)
 } catch (e) {
@@ -85,7 +89,7 @@ terbilang(Infinity)  // ""</code></pre>
         <section class="section">
           <h2>Installation</h2>
           <div class="code-block">
-            <pre><code>npm install terbilang-ts</code></pre>
+            <pre><code class="language-bash">npm install terbilang-ts</code></pre>
           </div>
           <p>Or copy the <a href="https://github.com/gasatrya/terbilang-ts/blob/main/src/terbilang.ts" target="_blank">terbilang.ts</a> file directly to your project.</p>
         </section>
@@ -117,5 +121,12 @@ terbilang(Infinity)  // ""</code></pre>
         </footer>
       </main>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        hljs.highlightAll()
+      })
+    </script>
   </body>
 </html>
