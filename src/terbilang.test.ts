@@ -43,20 +43,26 @@ describe('terbilang', () => {
     expect(terbilang(2001)).toBe('Dua Ribu Satu')
     expect(terbilang(3456)).toBe('Tiga Ribu Empat Ratus Lima Puluh Enam')
     expect(terbilang(11000)).toBe('Sebelas Ribu')
-    expect(terbilang(999999)).toBe('Sembilan Ratus Sembilan Puluh Sembilan Ribu Sembilan Ratus Sembilan Puluh Sembilan')
+    expect(terbilang(999999)).toBe(
+      'Sembilan Ratus Sembilan Puluh Sembilan Ribu Sembilan Ratus Sembilan Puluh Sembilan',
+    )
   })
 
   // Test millions
   it('should handle millions correctly', () => {
     expect(terbilang(1000000)).toBe('Satu Juta')
     expect(terbilang(1000001)).toBe('Satu Juta Satu')
-    expect(terbilang(1234567)).toBe('Satu Juta Dua Ratus Tiga Puluh Empat Ribu Lima Ratus Enam Puluh Tujuh')
+    expect(terbilang(1234567)).toBe(
+      'Satu Juta Dua Ratus Tiga Puluh Empat Ribu Lima Ratus Enam Puluh Tujuh',
+    )
   })
 
   // Test billions
   it('should handle billions correctly', () => {
     expect(terbilang(1000000000)).toBe('Satu Milyar')
-    expect(terbilang(1234567890)).toBe('Satu Milyar Dua Ratus Tiga Puluh Empat Juta Lima Ratus Enam Puluh Tujuh Ribu Delapan Ratus Sembilan Puluh')
+    expect(terbilang(1234567890)).toBe(
+      'Satu Milyar Dua Ratus Tiga Puluh Empat Juta Lima Ratus Enam Puluh Tujuh Ribu Delapan Ratus Sembilan Puluh',
+    )
   })
 
   // Test edge cases
@@ -76,7 +82,11 @@ describe('terbilang', () => {
 
   // Test numbers beyond Kuadriliun
   it('should throw error for numbers beyond Kuadriliun', () => {
-    expect(() => terbilang(10 ** 18)).toThrow('terbilang only supports numbers up to 999 Kuadriliun')
-    expect(() => terbilang(10 ** 20)).toThrow('terbilang only supports numbers up to 999 Kuadriliun')
+    expect(() => terbilang(10 ** 18)).toThrow(
+      'terbilang only supports numbers up to 999 Kuadriliun',
+    )
+    expect(() => terbilang(10 ** 20)).toThrow(
+      'terbilang only supports numbers up to 999 Kuadriliun',
+    )
   })
 })
